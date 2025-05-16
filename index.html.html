@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Search</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #dfdfdf;
+            border-radius: 80px;
+            padding: 5px;
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .profile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .profile-card {
+            background: linear-gradient(to right, #d0e9ff, #e0f0ff);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .profile-details {
+            flex-grow: 1;
+        }
+
+        .profile-main-text {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-sub-text {
+            color: #666;
+        }
+
+        .read-more {
+            background: linear-gradient(to right, #ffb6c1, #ffc0cb);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 150px;
+            cursor: pointer;
+            color: rgb(83, 83, 83);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search">
+            <button id="searchButton">🔍</button>
+        </div>
+        <div class="profile-list" id="profileList">
+            <div class="profile-card" data-maintext="Profile 1 Title">
+                <img src="profile.png" alt="Profile 1" class="profile-image">
+                <div class="profile-details">
+                    <div class="profile-main-text">Profile 1 Title</div>
+                    <div class="profile-sub-text">Some description for Profile 1</div>
+                </div>
+                <a href="profile1.html" class="read-more">Read more</a>
+            </div>
+             <div class="profile-card" data-maintext="Profile 2 Title">
+                <img src="profile.png" alt="Profile 2" class="profile-image">
+                <div class="profile-details">
+                    <div class="profile-main-text">Profile 2 Title</div>
+                    <div class="profile-sub-text">Some description for Profile 2</div>
+                </div>
+                <a href="profile2.html" class="read-more">Read more</a>
+            </div>
+             <div class="profile-card" data-maintext="Another Profile Title">
+                <img src="profile.png" alt="Profile 3" class="profile-image">
+                <div class="profile-details">
+                    <div class="profile-main-text">Profile 3 Title</div>
+                    <div class="profile-sub-text">Some description for Profile 3</div>
+                </div>
+                <a href="profile3.html" class="read-more">Read more</a>
+            </div>
+             <div class="profile-card" data-maintext="Last Profile Title">
+                <img src="profile.png" alt="Profile 4" class="profile-image">
+                <div class="profile-details">
+                    <div class="profile-main-text">Profile 4 Title</div>
+                    <div class="profile-sub-text">Some description for Profile 4</div>
+                </div>
+                <a href="profile4.html" class="read-more">Read more</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const profileList = document.getElementById('profileList');
+            const profileCards = document.querySelectorAll('.profile-card');
+
+            searchButton.addEventListener('click', performSearch);
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                profileCards.forEach(card => {
+                    const mainText = card.dataset.maintext.toLowerCase();
+                    if (mainText.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
